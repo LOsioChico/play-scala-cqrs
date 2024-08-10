@@ -30,5 +30,5 @@ val sharedSettings = Seq(
     "-feature",
     "-Werror"
   ),
-  libraryDependencies += guice
+  libraryDependencies ++= Seq(guice, "org.hibernate" % "hibernate-core" % "6.5.2.Final")
 )
