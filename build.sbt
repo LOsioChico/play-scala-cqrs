@@ -23,8 +23,8 @@ def run = Command.single("run") {
  }
 
 val sharedSettings = Seq(
-  organization := "com.example",
-  version := "1.0-SNAPSHOT",
+  organization := "com.losiochico",
+  version := "1.0",
   scalaVersion := "3.3.1",
   scalacOptions ++= Seq(
     "-feature",
