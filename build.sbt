@@ -20,7 +20,7 @@ def run = Command.single("run") {
   case (state, _) =>
     println("Usage: sbt selectRun <subproject>")
     state
- }
+}
 
 val sharedSettings = Seq(
   organization := "com.losiochico",
