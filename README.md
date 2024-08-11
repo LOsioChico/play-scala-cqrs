@@ -34,8 +34,17 @@ The application will start on port 9000.
 
 ### Endpoints
 
-<!-- Every project has the same endpoints, but they have different implementations. -->
+<!-- ## Every project has the same endpoints, but they have different implementations. -->
+
+---
 
 - `POST /post` - Create a new post `{"content": "post content"}`
 - `POST /post/:postId/comment` - Create a new comment for a post `{"content": "comment content"}`
 - `POST /post/:postId/comment/:commentId/reaction` - Create a new reaction for a comment `{"emoji": "👍"}`
+
+---
+
+- `GET /post/:id` - Get a post by id
+- `GET /posts` - Get all posts
+
+---
