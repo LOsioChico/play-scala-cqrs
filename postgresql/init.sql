@@ -1,14 +1,14 @@
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
-  content TEXT NOT NULL,
+  content TEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS comments;
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   content TEXT NOT NULL,
-  postid INT NOT NULL,
+  postid INT NOT NULL
 );
 
 DROP TABLE IF EXISTS reactions;
