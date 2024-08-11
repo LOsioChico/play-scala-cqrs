@@ -13,7 +13,7 @@ class CommentRepository @Inject() (db: Database) {
 
   def save(comment: Comment, postId: Long): Int = db.withConnection { implicit c =>
     SQL"""
-      INSERT INTO #$tableName (content, postId)
+      INSERT INTO #$tableName (content, post_id)
       VALUES (${comment.content}, $postId)
       RETURNING id
       """.as(SqlParser.int("id").single)

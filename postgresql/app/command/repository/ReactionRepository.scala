@@ -13,7 +13,7 @@ class ReactionRepository @Inject() (db: Database) {
 
   def save(reaction: Reaction, postId: Long, commentId: Long): Int = db.withConnection { implicit c =>
     SQL"""
-      INSERT INTO #$tableName (emoji, postId, commentId)
+      INSERT INTO #$tableName (emoji, post_id, comment_id)
       VALUES (${reaction.emoji}, $postId, $commentId)
       RETURNING id
       """.as(SqlParser.int("id").single)

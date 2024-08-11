@@ -7,5 +7,7 @@ case class Post(id: Option[Long], content: String)
 
 object Post {
   implicit val format: OFormat[Post] = Json.format[Post]
-  val parser: RowParser[Post] = Macro.namedParser[Post]
+  val parser: RowParser[Post] = Macro.namedParser[Post](
+    Macro.ColumnNaming.SnakeCase
+  )
 }

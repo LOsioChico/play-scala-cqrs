@@ -7,5 +7,7 @@ case class Reaction(id: Option[Long], emoji: String, postId: Option[Long], comme
 
 object Reaction {
   implicit val format: OFormat[Reaction] = Json.format[Reaction]
-  val parser: RowParser[Reaction] = Macro.namedParser[Reaction]
+  val parser: RowParser[Reaction] = Macro.namedParser[Reaction](
+    Macro.ColumnNaming.SnakeCase
+  )
 }

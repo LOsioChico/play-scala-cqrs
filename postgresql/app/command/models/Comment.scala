@@ -7,5 +7,7 @@ case class Comment(id: Option[Long], content: String, postId: Option[Long])
 
 object Comment {
   implicit val format: OFormat[Comment] = Json.format[Comment]
-  val parser: RowParser[Comment] = Macro.namedParser[Comment]
+  val parser: RowParser[Comment] = Macro.namedParser[Comment](
+    Macro.ColumnNaming.SnakeCase
+  )
 }
