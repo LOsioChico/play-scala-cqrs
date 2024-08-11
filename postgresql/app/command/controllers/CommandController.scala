@@ -29,24 +29,4 @@ class CommandController @Inject() (cc: ControllerComponents, commandService: Com
     val id = commandService.addReaction(request.body, postId: Long, commentId: Long)
     Ok(Json.toJson(ApiResult(message = Some(s"Reaction #$id created"), result = Some(Json.toJson(id)))))
   }
-
-  // def delete(id: Long): Action[AnyContent] = Action { request =>
-  //   comments.delete(id)
-  //   Ok(Json.toJson(ApiResult(message = Some(s"Comment #$id deleted"), result = Some(Json.toJson(id)))))
-  // }
-
-  // def update(): Action[Comment] = Action(parse.json[Comment]) { request =>
-  //   val comment = comments.update(request.body)
-  //   comment match {
-  //     case Some(c) =>
-  //       Ok(Json.toJson(ApiResult(message = Some(s"Comment #${c.id.get} updated"), result = Some(Json.toJson(c)))))
-  //     case None => NotFound(Json.toJson(ApiResult(error = Some(s"Comment not found"))))
-  //   }
-  // }
-
-  // def get(id: Long): Action[AnyContent] = Action { request =>
-  //   comments.get(id) match
-  //     case Some(comment) => Ok(Json.toJson(ApiResult(result = Some(Json.toJson(comment)))))
-  //     case None          => NotFound(Json.toJson(ApiResult(error = Some(s"Comment #$id not found"))))
-  // }
 }
