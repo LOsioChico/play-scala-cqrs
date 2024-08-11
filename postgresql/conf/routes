@@ -1,6 +1,3 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# https://www.playframework.com/documentation/latest/ScalaRouting
-# ~~~~
-
-GET     /                                   controllers.HomeController.index()
+POST /post                                      command.controllers.CommandController.addPost()
+POST /post/:postId/comment                      command.controllers.CommandController.addComment(postId: Long)
+POST /post/:postId/comment/:commentId/reaction  command.controllers.CommandController.addReaction(postId: Long, commentId: Long)
