@@ -12,7 +12,10 @@ lazy val postgresql = (project in file("postgresql"))
   .settings(
     name := "postgresql",
     sharedSettings,
-    libraryDependencies += "org.postgresql" % "postgresql" % "42.7.3"
+    libraryDependencies ++= Seq(
+      "org.postgresql" % "postgresql" % "42.7.3",
+      "org.playframework.anorm" %% "anorm" % "2.7.0"
+    )
   )
 
 def run = Command.single("run") {
@@ -30,5 +33,8 @@ val sharedSettings = Seq(
     "-feature",
     "-Werror"
   ),
-  libraryDependencies ++= Seq(guice, "org.hibernate" % "hibernate-core" % "6.5.2.Final")
+  libraryDependencies ++= Seq(
+    guice,
+    javaJpa
+  )
 )
