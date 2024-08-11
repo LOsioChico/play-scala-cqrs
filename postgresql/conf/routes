@@ -1,3 +1,6 @@
 POST /post                                      command.controllers.CommandController.addPost()
 POST /post/:postId/comment                      command.controllers.CommandController.addComment(postId: Long)
 POST /post/:postId/comment/:commentId/reaction  command.controllers.CommandController.addReaction(postId: Long, commentId: Long)
+
+GET  /post/:id                                  query.controllers.QueryController.getPost(id: Long)
+GET  /posts                                     query.controllers.QueryController.getPosts()
