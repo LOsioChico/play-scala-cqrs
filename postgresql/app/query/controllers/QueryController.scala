@@ -16,44 +16,13 @@ class QueryController @Inject() (cc: ControllerComponents, queryService: QuerySe
 ) extends AbstractController(cc) {
 
   def getPost(id: Long): Action[AnyContent] = Action.async { _ =>
-    val post = queryService.getPost(id)
-    val comments = queryService.getPostComments(id)
-    post match
-      case Some(p) =>
-        val commentsWithReactions = comments.map { c =>
-          val reactions = queryService.getCommentReactions(c.id)
-          val reactionsJson = Json.toJson(reactions)
-          Json.toJson(c).as[JsObject] + ("reactions" -> reactionsJson)
-        }
-        val json = Json.obj(
-          "postId" -> p.id,
-          "postContent" -> p.content,
-          "commentsCount" -> comments.size,
-          "comments" -> commentsWithReactions
-        )
-        Future.successful(Ok(Json.toJson(ApiResult(result = Some(json)))))
-      case None => Future.successful(NotFound(Json.toJson(ApiResult(error = Some("Post not found")))))
+    val postsJson = queryService.getPostsJson(id)
+    Future.successful(Ok(Json.toJson(ApiResult(result = Some(postsJson)))))
   }
 
   def getPosts: Action[AnyContent] = Action.async { _ =>
-    val json = queryService.getPostsIds().map { id =>
-      val post = queryService.getPost(id)
-      val comments = queryService.getPostComments(id)
-      post match
-        case Some(p) =>
-          val commentsWithReactions = comments.map { c =>
-            val reactions = queryService.getCommentReactions(c.id)
-            val reactionsJson = Json.toJson(reactions)
-            Json.toJson(c).as[JsObject] + ("reactions" -> reactionsJson)
-          }
-          Json.obj(
-            "postId" -> p.id,
-            "postContent" -> p.content,
-            "commentsCount" -> comments.size,
-            "comments" -> commentsWithReactions
-          )
-        case None => Json.obj()
-    }
-    Future.successful(Ok(Json.toJson(ApiResult(result = Some(Json.toJson(json))))))
+    val postIds = queryService.getPostsIds()
+    val postsJson = postIds.map(id => queryService.getPostsJson(id))
+    Future.successful(Ok(Json.toJson(ApiResult(result = Some(Json.toJson(postsJson))))))
   }
 }
